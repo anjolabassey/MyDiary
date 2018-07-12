@@ -1,37 +1,77 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>MyDiary</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Flamenco|Kaushan+Script" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    
-</head>
-<body>
-    
-    <div class="container">
-        <div class="about-col">
-            <img src="" alt="diary image">
-            <h2>Welcome to MyDiary</h2>
-            <p>An easier way to record your thoughts and experiences on the go</p>
-        </div>
-        <div class="login-col">
-            <form name=login-form>
-                
-                <input type="text" placeholder="Enter your Username" name="uname" required>
-            
-                <input type="text" placeholder="Enter your Password" name="password" required>
 
-                <button type="submit">Login</button>
-            </form>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h2>MyDiary</h2>
+            <div class=header-nav>
+                <button id="view-login">Log in</button>
+                <div id="loginmodal" class="modal">
+
+                    <form>
+                        <div class="imgholder">
+
+                            <span id="close">&#10006;</span>
+                            <img src="img/bg-img-1.jpg">
+                        </div>
+
+                        <input type="text" placeholder="Enter your Username" name="uname" required>
+                        <input type="password" placeholder="Enter your Password" name="password" required>
+                        <br>
+                        <button id=submitlogin type="submit">Login</button>
+                    </form>
+
+                </div>
+                <button id="view-signup">Sign up</button>
+                <div id="signupmodal" class="modal">
+
+                    <form>
+                        <div class="imgholder">
+
+                            <span id="close">&#10006;</span>
+                            <img src="img/bg-img-1.jpg">
+                        </div>
+                        <input type="text" placeholder="Enter your First name" name="fname" required>
+                        <input type="text" placeholder="Enter your last name" name="lname" required>
+                        <input type="email" placeholder="Enter your Email" name="email" required>
+                        <input type="text" placeholder="Enter your Username" name="uname" required>
+                        <input type="password" placeholder="Enter your Password" name="password" required>
+                        <br>
+                        <button id=submitsignup type="submit">Signup</button>
+                    </form>
+
+                </div>
+            </div>
         </div>
-        
+        <div class="hero">
+            <div class="hero-text">
+                <h1>Welcome to MyDiary</h1>
+                <p>An easy way to keep your diary on the go.
+                    <br> With the ability to edit and delete entries
+                    <br> and also set cutom reminders.
+                    <br> MyDiary has got you covered </p>
+                <button>Create Your Diary</button>
+            </div>
+
+        </div>
+
     </div>
 
 
 
-<script src="js/index.js"></script>   
+
+    <script src="js/index.js"></script>
 </body>
+
 </html>
