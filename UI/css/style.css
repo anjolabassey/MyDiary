@@ -16,7 +16,7 @@ body {
 
 }
 .header h2 {
-    color: #0a71a0;
+    color: #0facf3;
     
 }
 h1, h2 {
@@ -75,17 +75,22 @@ form {
     text-align: center;
 
 }
+form p {
+    color: black;
+    font-size: 25px;
+}
+
 input[type="text"],input[type="password"],
 input[type="email"] {
     width: 80%;
     padding: 15px;
-    margin-top: 20px;
+    margin: 20px 0 10px 0;
     border: none;
     border-radius: 4px;
     font-size: 0.9em;
     
 }
-#close {
+.close {
     position: absolute;
     color: rgb(99, 97, 97);
     right: 10px;
@@ -93,7 +98,7 @@ input[type="email"] {
     font-weight: bold;
 
 }
-#close:hover, #close:focus {
+.close:hover {
     color: red;
     cursor: pointer;
 }
@@ -101,8 +106,14 @@ input[type="email"] {
     text-align: center;
     margin: 20px 0 10px 0;
     position: relative;
+    
 }
 img{
     border-radius: 50%;
-    width: 100px;
+    width: 80px;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin: 5% 5% 0 5%;
 }

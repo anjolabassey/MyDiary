@@ -22,14 +22,23 @@
                     <form>
                         <div class="imgholder">
 
-                            <span id="close">&#10006;</span>
+                            <span id="close1" class="close">&#10006;</span>
                             <img src="img/bg-img-1.jpg">
                         </div>
 
                         <input type="text" placeholder="Enter your Username" name="uname" required>
                         <input type="password" placeholder="Enter your Password" name="password" required>
-                        <br>
+                        <div class="row">
+                            <label>
+                                <input type="checkbox"> Remember me
+                            </label>
+                                  
+                            <small>Forgot <a href="">Password?</a></small>
+                        </div>
+                        
+                        
                         <button id=submitlogin type="submit">Login</button>
+                        <p>Don't have an account? <a href="">Sign up</a></p>
                     </form>
 
                 </div>
@@ -39,16 +48,16 @@
                     <form>
                         <div class="imgholder">
 
-                            <span id="close">&#10006;</span>
+                            <span id="close2" class="close">&#10006;</span>
                             <img src="img/bg-img-1.jpg">
                         </div>
-                        <input type="text" placeholder="Enter your First name" name="fname" required>
-                        <input type="text" placeholder="Enter your last name" name="lname" required>
                         <input type="email" placeholder="Enter your Email" name="email" required>
                         <input type="text" placeholder="Enter your Username" name="uname" required>
                         <input type="password" placeholder="Enter your Password" name="password" required>
-                        <br>
+                        
+                    
                         <button id=submitsignup type="submit">Signup</button>
+                        <p>Already have an account? <a href="">Login</a></p>
                     </form>
 
                 </div>
@@ -61,7 +70,7 @@
                     <br> With the ability to edit and delete entries
                     <br> and also set cutom reminders.
                     <br> MyDiary has got you covered </p>
-                <button>Create Your Diary</button>
+                    <button id="view-signup2">Create Your Diary</button>
             </div>
 
         </div>
