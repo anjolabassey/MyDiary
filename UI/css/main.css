@@ -120,3 +120,24 @@ button:hover {
 .view-body {
     min-height: 300px;
 }
+
+.text-body, .text-header, .text-footer {
+    text-align: center;
+}
+textarea {
+    width: 90%;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 1.2em;
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+input[type="text"] {
+    width: 90%;
+    padding: 15px;
+    margin: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+}
