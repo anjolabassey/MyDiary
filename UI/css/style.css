@@ -43,13 +43,13 @@ button {
     padding: 10px;
     border-radius: 4px;
     border:none;
-    background: #21283E;
+    background: #3A506B;
     box-shadow: 1px 2px 2px rgb(29, 28, 28);
     font-weight: bold;
     color: #ccc;
 }
 button:hover {
-    background: #3A506B;
+    background: #007EA7;
 
 }
 .modal {
