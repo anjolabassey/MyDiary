@@ -42,9 +42,14 @@ section {
 .entry-header, .entry-footer {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
+
 }
 .entry-body {
     max-height: 100px;
+}
+p {
+    font-size: 1.3em;
 }
 a {
     text-decoration: none;
@@ -100,5 +105,18 @@ button {
 }
 button:hover {
     opacity: 0.8;
+}
+.entry-view {
+    background: #e0dfdf;
+    width: 60%;
+    margin: 100px auto 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    
+}
 
+.view-body {
+    min-height: 300px;
 }
