@@ -1,15 +1,8 @@
 # myDiary
 
-MyDiary is an easy to use online journal where users can write down their experiences, thoughts and feelings. 
 
-## Built With
-
-The UI component is built with HTML CSS and JavaScript
-
-## Author
-
-**Anjola Bassey** 
-
-## License
-
+<<<<<<< HEAD
 This project is licensed under the MIT License
+=======
+This project is licensed under the MIT License
+>>>>>>> 8c929c5c2ac2410ffda2c83247028523f5ea23b0
