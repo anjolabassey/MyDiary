@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background:#0a71a0;
+    color: #f5f5f5;
+    padding: 0 20px;
+}
+.header h2 {
+    font-family: kaushan Script;
+}
+h1 {
+    font-family: kaushan Script;
+    color:#0a71a0;
+
+
+}
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 0 150px;
+    
+}   
+section {
+    text-align: center;
+} 
+.entry {  
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    max-width: 300px;
+    margin: 20px;
+    border: 4px;
+    background: whitesmoke;
+    
+    
+}
+.entry-header, .entry-footer {
+    display: flex;
+    justify-content: space-between;
+}
+.entry-body {
+    max-height: 100px;
+}
+.add {
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    top: 90vh;
+    right: 50px;
+  
+}
+hr {
+    margin: 10px 0;
+    border-style: solid;
+    opacity: 0.1;
+}
