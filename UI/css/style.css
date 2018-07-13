@@ -16,8 +16,7 @@ body {
 
 }
 .header h2 {
-    color: #0facf3;
-    
+    color: #21283E;
 }
 h1, h2 {
     font-family: kaushan script;
@@ -44,13 +43,13 @@ button {
     padding: 10px;
     border-radius: 4px;
     border:none;
-    background: #0facf3;
+    background: #21283E;
     box-shadow: 1px 2px 2px rgb(29, 28, 28);
     font-weight: bold;
-    color: #E9E3E6;
+    color: #ccc;
 }
 button:hover {
-    background: #0a71a0;
+    background: #3A506B;
 
 }
 .modal {
