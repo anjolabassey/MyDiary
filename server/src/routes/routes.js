@@ -11,4 +11,13 @@ router.post('/', (req, res) => {
   });
 });
 
+router.get('/', (req, res) => {
+  db.getAll();
+  res.json({
+    entry: db.getAll(),
+    message: 'View all entries',
+    error: false
+  });
+});
+
 export default router;

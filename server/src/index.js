@@ -12,10 +12,10 @@ const app = express();
 app.server = http.createServer(app);
 
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => res.json({
-  message: 'Welcome to our Bookstore!'
+  message: 'Welcome to MyDiary'
 }));
 
 
