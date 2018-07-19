@@ -1,13 +1,13 @@
 {
-  "name": "server",
+  "name": "mydiary",
   "version": "1.0.0",
   "description": "MyDiary is an online diary(journal) where users can write down their experiences, thoughts and feelings.",
-  "main": "index.js",
+  "main": "server/dist",
   "scripts": {
-    "start": "nodemon src/index.js --exec babel-node --presets env",
-    "build": "babel src -s -D -d dist --presets env",
-    "lint": "eslint src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server/src/index.js --exec babel-node --presets env",
+    "build": "babel server/src -s -D -d server/dist --presets env",
+    "lint": "eslint server/src",
+    "test": "mocha"
   },
   "eslintConfig": {
     "parserOptions": {
@@ -36,6 +36,7 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.2"
   }
 }
