@@ -1,10 +1,10 @@
 /*eslint-disable*/
-var assert = require('assert');
-var db = require('../server/src/db');
+let assert = require('assert');
+let db = require('../server/src/db');
 
-var entry = {
-  'Title': 'Today',
-  'Body': 'I had a good day'
+let entry = {
+  title: 'Today',
+  body: 'I had a good day'
 };
 
 describe('Array Operations', () => {
