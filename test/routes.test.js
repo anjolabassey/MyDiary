@@ -29,4 +29,18 @@ describe('Entries', () => {
             });
         });
     });
+
+    describe('/GET entries', () => {
+        it('it should get all the entries', (done) => {
+            chai.request('http://localhost:4000/v1')
+            .get('/entries')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('error');
+                res.body.should.have.property('error');
+            done();
+            });
+        });
+    });
 });
