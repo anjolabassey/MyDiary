@@ -20,4 +20,12 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/:id', (req, res) => {
+  res.json({
+    entry: db.getOne(Number(req.params.id)),
+    message: 'View this entry',
+    error: false
+  });
+});
+
 export default router;

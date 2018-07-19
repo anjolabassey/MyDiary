@@ -13,11 +13,7 @@ const getAll = () => {
 
 
 const getOne = (id) => {
-  for (let i = 0; i < database.length; i += 1) {
-    if (database[i].id === id) {
-      return database[i];
-    }
-  }
+  return database.find(entry => entry.id === id);
 };
 
 const modifyOne = (entry) => {
