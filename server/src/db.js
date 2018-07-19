@@ -7,26 +7,38 @@ const addOne = (entry) => {
 };
 
 
-const viewAll = () => {
-
+const getAll = () => {
+  return database;
 };
 
 
-const viewOne = (id) => {
+const getOne = (id) => {
+  return database.find(entry => entry.id === id);
 };
 
-const modifyOne = (id) => {
+const modifyOne = (entry) => {
+  for (let i = 0; i < database.length; i += 1) {
+    if (database[i].id === entry.id) {
+      database[i].title = entry.title;
+      database[i].body = entry.body;
+    }
+    return entry;
+  }
 };
 
 const deleteOne = (id) => {
- 
+  for (let i = 0; i < database.length; i += 1) {
+    if (database[i].id === id) {
+      return database.splice(i, 1);
+    }
+  }
 };
 
 module.exports = {
   database,
   addOne,
-  viewAll,
-  viewOne,
+  getAll,
+  getOne,
   modifyOne,
   deleteOne
 };
