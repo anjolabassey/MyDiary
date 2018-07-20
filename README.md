@@ -1,5 +1,6 @@
 TravisCI [![Build Status](https://travis-ci.org/anjolabassey/MyDiary.svg?branch=server)](https://travis-ci.org/anjolabassey/MyDiary)
 
+
 # myDiary
 
 MyDiary is an easy to use online journal where users can write down their experiences, thoughts and feelings. 
