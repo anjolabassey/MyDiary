@@ -12,6 +12,20 @@ MyDiary is an easy to use online journal where users can write down their experi
 
 The UI component is built with HTML CSS and JavaScript
 
+* NodeJS
+* Express JS
+* Mocha and chai
+
+## Prerequisites
+
+This project uses node and npm, you need to have them intalled
+
+## Installing
+git clone this repo
+cd mydiary
+npm install
+
+
 ## Author
 
 **Anjola Bassey** 
