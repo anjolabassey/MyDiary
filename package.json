@@ -7,7 +7,7 @@
     "start": "nodemon server/src/index.js --exec babel-node --presets env",
     "build": "babel server/src -s -D -d server/dist --presets env",
     "lint": "eslint server/src",
-    "test": "mocha --compilers js:babel-core/register ./test/"
+    "test": "mocha --compilers js:babel-core/register ./test/* --exit"
   },
   "eslintConfig": {
     "parserOptions": {
