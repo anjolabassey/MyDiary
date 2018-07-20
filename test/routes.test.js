@@ -77,7 +77,7 @@ describe('Entries', () => {
             db.addOne(entry);
             let entry1 = {  title: 'I met a lemon', body: 'he was very tart' };
             chai.request('http://localhost:4000/v1')
-            .get('/entries/' + entry.id)
+            .put('/entries/' + entry.id)
             .send(entry1)
             .end((err, res) => {
                 res.should.have.status(200);

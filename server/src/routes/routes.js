@@ -27,4 +27,13 @@ router.get('/:id', (req, res) => {
   });
 });
 
+router.put('/:id', (req, res) => {
+  req.body.id = Number(req.params.id);
+  res.json({
+    entry: db.modifyOne(req.body),
+    message: 'Entry is successfully edited',
+    error: false
+  });
+});
+
 export default router;
