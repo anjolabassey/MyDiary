@@ -5,7 +5,7 @@
   "main": "server/dist/index.js",
   "scripts": {
     "dev": "nodemon server/src/index.js --exec babel-node --presets env",
-    "heroku-build": "npx babel server/ --out-dir dist/ --idnore server/test",
+    "heroku-build": "npx babel server/ --out-dir dist/ --ignore server/test",
     "build": "babel server/src -s -D -d server/dist --presets env",
     "start": "node ./server/dist/index.js",
     "lint": "eslint server/src",
