@@ -13,7 +13,13 @@ const getAll = () => {
 
 
 const getOne = (id) => {
-  return database.find(entry => entry.id === id);
+  // database.find(entry => entry.id === id);
+  for (let i = 0; i < database.length; i += 1) {
+    if (database[i].id === id) {
+      return database[i];
+    }
+    return 'Entry not found';
+  }
 };
 
 const modifyOne = (entry) => {
@@ -24,6 +30,7 @@ const modifyOne = (entry) => {
     }
     return database[i];
   }
+  return 'Entry not found';
 };
 
 const deleteOne = (id) => {
@@ -32,6 +39,7 @@ const deleteOne = (id) => {
       return database.splice(i, 1);
     }
   }
+  return 'Entry not found';
 };
 
 module.exports = {

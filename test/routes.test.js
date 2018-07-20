@@ -46,20 +46,29 @@ describe('Entries', () => {
 
     describe('/GET/:id entries', () => {
         it('it should GET an entry by the given id', (done) => {
-            let entry = { title: 'I met a lemon', body: 'he was very tart' };
-            db.getOne('entry');
+            let entry = { title: 'today', body: 'i met a unicorn'};
+            db.addOne(entry);
             chai.request('http://localhost:4000/v1')
-            .get('/entries' + entry.id)
+            .get('/entries/' + entry.id)
+            .send(entry)
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('object');
                 res.body.should.have.property('message');
-                res.body.should.have.property('id');
-                res.body.should.have.property('title');
-                res.body.should.have.property('body');
             done();
             });
         });
+
+        // it('it should return status 404 when entry not found', (done) => {
+        //     let entry1 = { id: 'fakeId', title: 'I met a lemon', body: 'he was very tart' };
+        //     chai.request('http://localhost:4000/v1')
+        //     .get('/entries/' + entry1.id)
+        //     .end((err, res) => {
+        //         res.should.have.status(404);
+        //         res.status.should.be.a('object');
+        //     done();
+        //     });
+        // });
     });
     
 });
