@@ -1,6 +1,6 @@
 TravisCI [![Build Status](https://travis-ci.org/anjolabassey/MyDiary.svg?branch=server)](https://travis-ci.org/anjolabassey/MyDiary)
 
-Coveralls [![Coverage Status](https://coveralls.io/repos/github/anjolabassey/MyDiary/badge.svg?branch=master)](https://coveralls.io/github/anjolabassey/MyDiary?branch=master)
+Coveralls [![Coverage Status](https://coveralls.io/repos/github/anjolabassey/MyDiary/badge.svg?branch=server)](https://coveralls.io/github/anjolabassey/MyDiary?branch=server)
 
 CodeClimate [![Test Coverage](https://api.codeclimate.com/v1/badges/7100dc47534afb253620/test_coverage)](https://codeclimate.com/github/anjolabassey/MyDiary/test_coverage)
 
