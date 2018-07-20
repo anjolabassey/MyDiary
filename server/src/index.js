@@ -18,7 +18,6 @@ app.get('/', (req, res) => res.json({
   message: 'Welcome to MyDiary'
 }));
 
-
 // api routes
 app.use('/v1/entries', routes);
 

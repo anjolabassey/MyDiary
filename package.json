@@ -2,13 +2,18 @@
   "name": "mydiary",
   "version": "1.0.0",
   "description": "MyDiary is an online diary(journal) where users can write down their experiences, thoughts and feelings.",
-  "main": "server/dist",
+  "main": "server/dist/index.js",
   "scripts": {
-    "start": "nodemon server/src/index.js --exec babel-node --presets env",
+    "dev": "nodemon server/src/index.js --exec babel-node --presets env",
     "build": "babel server/src -s -D -d server/dist --presets env",
+    "start": " node /server/dist/index.js",
     "lint": "eslint server/src",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register ./test/* --exit"
+  },
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
   },
   "eslintConfig": {
     "parserOptions": {
