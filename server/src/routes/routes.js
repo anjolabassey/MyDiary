@@ -36,4 +36,12 @@ router.put('/:id', (req, res) => {
   });
 });
 
+router.delete('/:id', (req, res) => {
+  db.deleteOne(Number(req.params.id));
+  res.json({
+    message: 'Entry is successfully deleted',
+    error: false
+  });
+});
+
 export default router;
