@@ -3,7 +3,7 @@ import http from 'http';
 import bodyParser from 'body-parser';
 import routes from './routes/routes';
 
-const port = process.env.port || 4000;
+const port = process.env.PORT || 4000;
 
 // setup express app
 const app = express();

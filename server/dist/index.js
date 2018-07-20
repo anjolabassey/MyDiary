@@ -22,7 +22,7 @@ var _routes2 = _interopRequireDefault(_routes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var port = process.env.port || 4000;
+var port = process.env.PORT || 4000;
 
 // setup express app
 var app = (0, _express2.default)();
