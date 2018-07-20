@@ -70,5 +70,22 @@ describe('Entries', () => {
         //     });
         // });
     });
+
+    describe('/PUT/:id entries', () => {
+        it('it should Update an entry by the given id', (done) => {
+            let entry = { title: 'today', body: 'i met a unicorn'};
+            db.addOne(entry);
+            let entry1 = {  title: 'I met a lemon', body: 'he was very tart' };
+            chai.request('http://localhost:4000/v1')
+            .get('/entries/' + entry.id)
+            .send(entry1)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('message').eql('Entry is successfully edited');
+            done();
+            });
+        });
+    });
     
 });
