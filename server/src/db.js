@@ -6,11 +6,9 @@ const addOne = (entry) => {
   return database.push(entry);
 };
 
-
 const getAll = () => {
   return database;
 };
-
 
 const getOne = (id) => {
   // database.find(entry => entry.id === id);
