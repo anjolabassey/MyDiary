@@ -38,7 +38,7 @@ section {
 } 
 .entry {  
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    max-width: 300px;
+    max-width: 250px;
     background: rgb(227, 227, 228); 
     padding: 1%;
     margin: 1%;
@@ -130,22 +130,19 @@ button:hover {
     background: #0B132B;
 }
 .entry-view {
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
     padding: 1%;
 }
 
-.view-body {
-    min-height: 300px;
-}
 .view-entry {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background: #ccc;
-    margin: 3% auto 0 auto;
+    margin: 6% auto 0 auto;
     width: 40%;
-    
     padding: 1%;
     font-family: kaushan script;
+    min-height: 300px;
 }
 .text-body, .text-header {
     text-align: center;
@@ -186,7 +183,7 @@ input[type="time"] {
     width: 200px;
     border: none;
     border-radius: 4px;
-    padding: 10px;
+    padding: 3%;
     font-weight: bold;
     font-size: 1em;
     text-align: center;
@@ -215,7 +212,7 @@ input[type="submit"] {
 form {
     margin: 0 auto; 
     padding: 2%;
-    width: 40%;
+    width: 50%;
     height: 80%;
     background-color: rgb(236, 232, 232);
     border-radius: 5px;
