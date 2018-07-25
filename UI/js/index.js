@@ -2,7 +2,6 @@ let loginModal = document.getElementById("loginmodal");
 let signupModal = document.getElementById("signupmodal");
 let viewLogin = document.getElementById("view-login");
 let viewSignup = document.getElementById("view-signup");
-let viewSignup2 = document.getElementById("view-signup2");
 let closeLogin = document.getElementById("close1");
 let closeSignup = document.getElementById("close2");
 let submitLogin = document.getElementById("submitlogin");
@@ -17,11 +16,6 @@ viewLogin.addEventListener("click", event => {
 
 //show Sign up when sign up button is clicked
 viewSignup.addEventListener("click", event => {
-    event.preventDefault();
-    signupModal.style.display = "block";
-
-});
-viewSignup2.addEventListener("click", event => {
     event.preventDefault();
     signupModal.style.display = "block";
 
