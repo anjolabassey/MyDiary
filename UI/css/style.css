@@ -15,7 +15,7 @@ h1, h2 {
 }
 p {
     font-family: kaushan script;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: 500;
     line-height: 2em;
     color: white;
@@ -72,7 +72,7 @@ form button {
 }
 form p {
     color: black;
-    font-size: 20px;
+    font-size: 1em;
 }
 
 input[type="text"],input[type="password"],
