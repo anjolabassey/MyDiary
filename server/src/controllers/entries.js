@@ -1,3 +1,7 @@
+import pg from 'pg';
+import startDb from '../models/database';
+
+
 const database = [
   {
     title: 'I met someone',
@@ -6,7 +10,7 @@ const database = [
   }
 ];
 
-const addOne = (req, res) => {
+const addOne = (req, res, next) => {
   if (!req.body.title || !req.body.body) {
     res.sendStatus(406);
   } else {
@@ -21,7 +25,14 @@ const addOne = (req, res) => {
 
 
 const getAll = (req, res) => {
-  res.send(database);
+  // res.send(database);
+  client.query('SELECT * FROM entries', (err, res) => {
+    if (err) {
+      res.send(err);
+    } else {
+      
+    }
+  });
 };
 
 const getOne = (req, res) => {

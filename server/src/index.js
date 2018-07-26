@@ -1,7 +1,9 @@
 import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
+import logger from 'morgan';
 import routes from './routes/routes';
+
 
 const port = process.env.PORT || 4000;
 
@@ -10,6 +12,8 @@ const app = express();
 
 // setup  server
 app.server = http.createServer(app);
+
+app.use(logger('dev'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
