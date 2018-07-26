@@ -10,7 +10,7 @@
     "start": "node ./server/dist/index.js",
     "lint": "eslint server/src",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register ./test/* --exit"
+    "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register ./server/src/tests/* --exit"
   },
   "engines": {
     "node": "8.9.4",
@@ -23,6 +23,7 @@
     },
     "env": {
       "node": true,
+      "mocha": true,
       "es6": true
     }
   },
