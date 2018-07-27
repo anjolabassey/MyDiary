@@ -1,5 +1,4 @@
-import pg from 'pg';
-import startDb from '../models/database';
+import { db, client } from '../models/database';
 
 
 const database = [
@@ -10,7 +9,7 @@ const database = [
   }
 ];
 
-const addOne = (req, res, next) => {
+const addOne = (req, res) => {
   if (!req.body.title || !req.body.body) {
     res.sendStatus(406);
   } else {
@@ -24,13 +23,16 @@ const addOne = (req, res, next) => {
 };
 
 
+// const getAll = (req, res) => {
+//   res.send(database);
+// };
+
 const getAll = (req, res) => {
-  // res.send(database);
-  client.query('SELECT * FROM entries', (err, res) => {
+  client.query('SELECT * FROM public.entries', (err, res) => {
     if (err) {
-      res.send(err);
+      console.log(err.stack);
     } else {
-      
+      result.push(res.rows);
     }
   });
 };

@@ -3,6 +3,7 @@ import http from 'http';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import routes from './routes/routes';
+import { db } from './models/database';
 
 
 const port = process.env.PORT || 4000;
@@ -12,6 +13,9 @@ const app = express();
 
 // setup  server
 app.server = http.createServer(app);
+
+// ttart db
+db();
 
 app.use(logger('dev'));
 
