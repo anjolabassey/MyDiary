@@ -8,6 +8,7 @@
     "heroku-build": "npx babel server/ --out-dir dist/ --ignore server/test",
     "build": "babel server/src -s -D -d server/dist --presets env",
     "start": "node ./server/dist/index.js",
+    "new-start": "babel-node server/src/index.js",
     "lint": "eslint server/src",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register ./server/src/tests/* --exit"
@@ -31,7 +32,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "morgan": "^1.9.0",
     "pg": "^7.4.3",
     "pg-promise": "^8.4.5"
   },

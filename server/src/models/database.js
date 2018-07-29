@@ -1,16 +1,20 @@
-import { Client } from 'pg';
+import pg from 'pg';
 
-const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/mydiary';
+// process.env.DATABASE_URL ||
+const connectionString = 'postgres://postgres:anjola@localhost:5432/mydiary';
 
-const client = new Client({ connectionString });
+const client = new pg.Client(connectionString);
 
-const startDb = () => {
-  client.connect();
+const db = () => {
+  client.connect((err) => {
+    if (err) {
+      console.error('connection error', err);
+    } else {
+      console.log('Connected to the database');
+    }
+  });
   return client;
 };
 
-const query = client.query(
-  'CREATE TABLE entries(id SERIAL PRIMARY KEY, title VARCHAR(40) not null, body VARCHAR())');
-query.on('end', () => { client.end(); });
 
-export default startDb;
+export { db, client };

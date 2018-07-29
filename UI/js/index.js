@@ -1,11 +1,11 @@
-let loginModal = document.getElementById("loginmodal");
-let signupModal = document.getElementById("signupmodal");
-let viewLogin = document.getElementById("view-login");
-let viewSignup = document.getElementById("view-signup");
-let closeLogin = document.getElementById("close1");
-let closeSignup = document.getElementById("close2");
-let submitLogin = document.getElementById("submitlogin");
-let submitSignup = document.getElementById("submitsignup");
+const loginModal = document.getElementById("loginmodal");
+const signupModal = document.getElementById("signupmodal");
+const viewLogin = document.getElementById("view-login");
+const viewSignup = document.getElementById("view-signup");
+const closeLogin = document.getElementById("close1");
+const closeSignup = document.getElementById("close2");
+const submitLogin = document.getElementById("submitlogin");
+const submitSignup = document.getElementById("submitsignup");
 
 //show log in when login button is clicked
 viewLogin.addEventListener("click", event => {
