@@ -1,95 +1,71 @@
 import { db, client } from '../models/database';
 
 
-const database = [
-  {
-    title: 'I met someone',
-    body: 'at the football game',
-    id: 100
-  }
-];
-
 const addOne = (req, res) => {
-  if (!req.body.title || !req.body.body) {
-    res.sendStatus(406);
+  const { title, body } = req.body;
+  if (!title || !body) {
+    res.sendStatus(400);
   } else {
-    const id = Math.floor(Math.random() * 100);
-    req.body.id = id;
-    database.push(req.body);
-    res.send({
-      message: 'Entry added succesfully'
+    client.query('INSERT INTO entries (title, body, last_updated) VALUES ( $1, $2, NOW()) RETURNING *', [title, body], (err, resp) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.json({
+          message: 'Entry successfully added',
+          entry: resp.row
+        });
+      }
     });
   }
 };
 
-
-// const getAll = (req, res) => {
-//   res.send(database);
-// };
-
 const getAll = (req, res) => {
-  client.query('SELECT * FROM public.entries', (err, res) => {
+  client.query('SELECT * FROM entries', (err, resp) => {
     if (err) {
-      console.log(err.stack);
+      res.send(err);
     } else {
-      result.push(res.rows);
+      res.send(resp.rows);
     }
   });
 };
 
 const getOne = (req, res) => {
-  // database.find(entry => entry.id === id);
   const id = Number(req.params.id);
-  let result;
-  for (let i = 0; i < database.length; i++) {
-    if (database[i].id === id) {
-      result = database[i];
+  client.query(`SELECT * FROM entries WHERE id=${id}`, (err, resp) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.send(resp.rows);
     }
-  }
-  if (!result) {
-    res.sendStatus(404);
-  } else {
-    res.send(result);
-  }
+  });
 };
 
 const modifyOne = (req, res) => {
   const id = Number(req.params.id);
   const { title, body } = req.body;
-  let result;
-  for (let i = 0; i < database.length; i++) {
-    if (database[i].id === id) {
-      database[i].title = title;
-      database[i].body = body;
-      result = database[i];
+  client.query(`UPDATE entries SET title = $1, body = $2 WHERE id = ${id}`, [title, body], (err, resp) => {
+    if (err) {
+      res.status(400).json({ message: 'Entry does not exist' });
+    } else {
+      res.status(200).json({ message: 'Entry successfully updated' });
     }
-  }
-  if (!result) {
-    res.sendStatus(404);
-  } else {
-    res.send(result);
-  }
+  });
 };
 
 const deleteOne = (req, res) => {
   const id = Number(req.params.id);
-  let result;
-  for (let i = 0; i < database.length; i++) {
-    if (database[i].id === id) {
-      result = database.splice(i, 1);
+  client.query(`DELETE FROM entries WHERE id=${id}`, (err, resp) => {
+    if (err) {
+      res.status(404).send(err.stack);
+    } else {
+      res.json({
+        message: 'Entry successfully deleted'
+      });
     }
-  }
-  if (!result) {
-    res.sendStatus(404);
-  } else {
-    res.send({
-      message: 'Entry successfully deleted'
-    });
-  }
+  });
 };
 
 export default {
-  database,
   addOne,
   getAll,
   getOne,

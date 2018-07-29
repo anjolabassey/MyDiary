@@ -1,5 +1,5 @@
 import express from 'express';
-import http from 'http';
+// import http from 'http';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import routes from './routes/routes';
@@ -12,9 +12,9 @@ const port = process.env.PORT || 4000;
 const app = express();
 
 // setup  server
-app.server = http.createServer(app);
+// app.server = http.createServer(app);
 
-// ttart db
+// start db
 db();
 
 app.use(logger('dev'));
@@ -27,11 +27,14 @@ app.get('/', (req, res) => res.json({
 }));
 
 // api routes
-app.use('/v1/entries', routes);
+app.use('/api/v1', routes);
 
+app.all('/*', (req, res) => {
+  res.status(404).json({ message: 'not found' });
+});
 
 // listen for requests
-app.server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Started on port ${port}`);
 });
 

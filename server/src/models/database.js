@@ -8,7 +8,7 @@ const client = new pg.Client(connectionString);
 const db = () => {
   client.connect((err) => {
     if (err) {
-      console.error('connection error', err.stack);
+      console.error('connection error', err);
     } else {
       console.log('Connected to the database');
     }
@@ -17,7 +17,4 @@ const db = () => {
 };
 
 
-export {
-  db,
-  client
-};
+export { db, client };
