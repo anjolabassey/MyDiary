@@ -15,7 +15,7 @@ describe('Entries API endpoint', () => {
   describe('/POST entries API', () => {
     it('should not POST an entry with empty fields', (done) => {
       chai
-        .request('http://localhost:4000/v1')
+        .request('http://localhost:4000/api/v1')
         .post('/entries')
         .end((err, res) => {
           res.should.have.status(400);
@@ -29,7 +29,7 @@ describe('Entries API endpoint', () => {
         body: 'i met a unicorn'
       };
       chai
-        .request('http://localhost:4000/v1')
+        .request('http://localhost:4000/api/v1')
         .post('/entries')
         .send(entry)
         .end((err, res) => {
@@ -44,7 +44,7 @@ describe('Entries API endpoint', () => {
   describe('/GET entries API', () => {
     it('should GET all the entries', (done) => {
       chai
-        .request('http://localhost:4000/v1')
+        .request('http://localhost:4000/api/v1')
         .get('/entries')
         .end((err, res) => {
           res.should.have.status(200);
@@ -57,26 +57,26 @@ describe('Entries API endpoint', () => {
   describe('/GET/:id entries API', () => {
     it('should GET an entry by the given id', (done) => {
       const entry = {
+        id: 2,
         title: 'today',
-        body: 'i met a unicorn',
-        id: 99999
+        body: 'i met a unicorn'
       };
       chai
-        .request('http://localhost:4000/v1')
+        .request('http://localhost:4000/api/v1')
         .get(`/entries/${entry.id}`)
         .send(entry)
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.be.a('object');
+          res.body.should.be.a('array');
           res.body.should.have.property('title');
           done();
         });
     });
 
     it('should return status 404 when entry not found', (done) => {
-      const entry1 = { title: 'I met a lemon', body: 'he was very tart', id: 'fake' };
+      const entry1 = { id: 'fake', title: 'I met a lemon', body: 'he was very tart' };
       chai
-        .request('http://localhost:4000/v1')
+        .request('http://localhost:4000/api/v1')
         .get(`/entries/${entry1.id}`)
         .end((err, res) => {
           res.should.have.status(404);
@@ -88,17 +88,17 @@ describe('Entries API endpoint', () => {
   describe('/PUT/:id entries API', () => {
     it(' should Update an entry by the given id', (done) => {
       const entry = {
+        id: 1,
         title: 'today',
         body: 'i met a unicorn'
       };
       const entry1 = {
         title: 'I met a lemon',
-        body: 'he was very tart',
-        id: 100
+        body: 'he was very tart'
       };
       chai
-        .request('/v1')
-        .put(`/entries/${entry1.id}`)
+        .request('http://localhost:4000/api/v1')
+        .put(`/entries/${entry.id}`)
         .send(entry1)
         .end((err, res) => {
           res.should.have.status(200);
@@ -113,11 +113,12 @@ describe('Entries API endpoint', () => {
   describe('/DELETE/:id entries API', () => {
     it('it should DELETE an entry by the given id', (done) => {
       const entry = {
+        id: 1,
         title: 'today',
         body: 'i met a unicorn'
       };
       chai
-        .request('http://localhost:4000/v1')
+        .request('http://localhost:4000/api/v1')
         .delete(`/entries/${entry.id}`)
         .end((err, res) => {
           if (err) {
