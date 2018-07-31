@@ -1,9 +1,11 @@
 import pg from 'pg';
 
 // process.env.DATABASE_URL ||
-const connectionString = 'postgres://postgres:anjola@localhost:5432/mydiary';
+require('dotenv').config();
 
-const client = new pg.Client(connectionString);
+// const connectionString = process.env.CONSTRING;
+
+const client = new pg.Client(process.env.CONSTRING);
 
 const db = () => {
   client.connect((err) => {

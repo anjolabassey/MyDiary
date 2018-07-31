@@ -5,6 +5,7 @@ import logger from 'morgan';
 import routes from './routes/routes';
 import { db } from './models/database';
 
+require('dotenv').config();
 
 const port = process.env.PORT || 4000;
 
