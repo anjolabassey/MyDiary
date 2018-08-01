@@ -26,7 +26,7 @@ client.query('CREATE TABLE IF NOT EXISTS entries (id SERIAL PRIMARY KEY, title C
   }
 });
 
-client.query('CREATE TABLE IF NOT EXISTS users (user_id SERIAL PRIMARY KEY, email CHARACTER VARYING(30) UNIQUE NOT NULL, username CHARACTER VARYING(30) NOT NULL, password CHARACTER VARYING(15) NOT NULL)', (err, res) => {
+client.query('CREATE TABLE IF NOT EXISTS users (user_id SERIAL PRIMARY KEY, email CHARACTER VARYING(30) UNIQUE NOT NULL, username CHARACTER VARYING(30) NOT NULL, password CHARACTER VARYING(250) NOT NULL)', (err, res) => {
   if (err) {
     console.log(err);
   } else {

@@ -1,15 +1,16 @@
 import express from 'express';
-import entries from '../controllers/entries';
-import users from '../controllers/users';
+import Entrycontroller from '../controllers/entries';
+import UserController from '../controllers/users';
 
 const router = express.Router();
 
-router.post('/entries', entries.addOne);
-router.get('/entries', entries.getAll);
-router.get('/entries/:id', entries.getOne);
-router.put('/entries/:id', entries.modifyOne);
-router.delete('/entries/:id', entries.deleteOne);
+router.post('/entries', Entrycontroller.addOne);
+router.get('/entries', Entrycontroller.getAll);
+router.get('/entries/:id', Entrycontroller.getOne);
+router.put('/entries/:id', Entrycontroller.modifyOne);
+router.delete('/entries/:id', Entrycontroller.deleteOne);
 
-router.post('/users', users.addUser);
+router.post('/auth/signup', UserController.signup);
+router.post('/auth/signin', UserController.signin);
 
 export default router;
