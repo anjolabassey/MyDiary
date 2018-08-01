@@ -1,5 +1,5 @@
 // solution for validating email was gotten from https://www.codeproject.com/Tips/492632/Email-Validation-in-JavaScript
-
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { db, client } from '../models/database';
 
@@ -34,10 +34,21 @@ class Usercontroller {
     } else {
       const hashed = bcrypt.hashSync(password, 10);
       client.query('INSERT INTO users (email, username, password) VALUES ( $1, $2, $3) RETURNING *', [email, username, hashed], (err, resp) => {
+        
         if (err) {
           return res.status(409).json({ message: 'This email address already exists' });
         } else {
-          return res.json({ message: 'User successfully added' });
+          const newToken = jwt.sign({
+            iss: 'Anjola',
+            sub: resp.rows[0].user_id,
+            iat: new Date().getTime(),
+            exp: 10800
+          }, process.env.SECRET_KEY);
+          return res.status(201).json({
+            token: newToken,
+            status: 'Success',
+            user: resp.rows[0].email
+          });
         }
       });
     }
