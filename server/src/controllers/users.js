@@ -4,19 +4,21 @@ import bcrypt from 'bcrypt';
 import { db, client } from '../models/database';
 
 /**
- * @export
- * @class Entrycontroller
+ *
+ * @class Usercontroller
  */
-export default class Usercontroller {
+class Usercontroller {
   /**
-   * @static
-   * @param {obj} req
-   * @param {obj} res
+   * Registers the user to the app
+   *
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} success object or error object
    * @memberof Usercontroller
    */
-  static signup(req, res) {
+  signup(req, res) {
     const { email, username, password } = req.body;
-    const hashed = bcrypt.hashSync(password, 10);
     const re = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
     if (!email || !username || !password) {
@@ -30,9 +32,10 @@ export default class Usercontroller {
     } else if (re.test(email) === false) {
       return res.status(400).json({ message: 'Please enter a valid email' });
     } else {
+      const hashed = bcrypt.hashSync(password, 10);
       client.query('INSERT INTO users (email, username, password) VALUES ( $1, $2, $3) RETURNING *', [email, username, hashed], (err, resp) => {
         if (err) {
-          return res.status(409).json({ error: err, pwd: hashed });
+          return res.status(409).json({ message: 'This email address already exists' });
         } else {
           return res.json({ message: 'User successfully added' });
         }
@@ -41,12 +44,16 @@ export default class Usercontroller {
   }
 
   /**
- * @static
- * @param {obj} req
- * @param {obj} res
+ * Signs the user into the app
+ *
+ * @param {object} req
+ * @param {object} res
+ *
+ * @returns {object} success object or error object
+ *
  * @memberof Usercontroller
  */
-  static signin(req, res) {
+  signin(req, res) {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -56,7 +63,7 @@ export default class Usercontroller {
         if (err) {
           return res.status(400).json({ error: 'Wrong email or password, please try again' });
         } else if (resp.rowCount === 0) {
-          return res.status(400).json({ message: 'This email address does not exist' });
+          return res.status(400).json({ message: 'This email address does not have an account' });
         } else {
           if (bcrypt.compareSync(password, resp.rows[0].password)) {
             return res.json({ message: `${resp.rows[0].email} is signed in` });
@@ -68,3 +75,5 @@ export default class Usercontroller {
     }
   }
 }
+
+export default new Usercontroller();
