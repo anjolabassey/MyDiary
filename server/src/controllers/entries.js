@@ -20,7 +20,7 @@ export default class Entrycontroller {
     } else if (body === 'true' || body === 'false') {
       return res.status(400).json({ message: 'Booleans cannot be entered' });
     } else {
-      client.query('INSERT INTO entries (title, body, last_updated) VALUES ( $1, $2, NOW()) RETURNING *', [title, body], (err, resp) => {
+      client.query('INSERT INTO entries (title, body, last_updated user_id) VALUES ( $1, $2, NOW() $4) RETURNING *', [title, body], (err, resp) => {
         if (err) {
           return res.status(400).send(err);
         } else {

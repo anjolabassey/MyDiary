@@ -7,14 +7,17 @@ import { db, client } from '../models/database';
  * @export
  * @class Entrycontroller
  */
-export default class Usercontroller {
+class Usercontroller {
+  contructor() {
+  };
   /**
    * @static
    * @param {obj} req
    * @param {obj} res
    * @memberof Usercontroller
    */
-  static signup(req, res) {
+
+ signup(req, res) {
     const { email, username, password } = req.body;
     const hashed = bcrypt.hashSync(password, 10);
     const re = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -46,7 +49,7 @@ export default class Usercontroller {
  * @param {obj} res
  * @memberof Usercontroller
  */
-  static signin(req, res) {
+signin(req, res) {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -56,7 +59,7 @@ export default class Usercontroller {
         if (err) {
           return res.status(400).json({ error: 'Wrong email or password, please try again' });
         } else if (resp.rowCount === 0) {
-          return res.status(400).json({ message: 'This email address does not exist' });
+          return res.status(400).json({ message: 'This email address does not have an account' });
         } else {
           if (bcrypt.compareSync(password, resp.rows[0].password)) {
             return res.json({ message: `${resp.rows[0].email} is signed in` });
@@ -68,3 +71,7 @@ export default class Usercontroller {
     }
   }
 }
+
+const userController = new Usercontroller();
+
+export default userController;
