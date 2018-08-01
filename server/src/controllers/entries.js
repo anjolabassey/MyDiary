@@ -4,14 +4,18 @@ import { db, client } from '../models/database';
  * @export
  * @class Entrycontroller
  */
-export default class Entrycontroller {
+class Entrycontroller {
 /**
- * @param {obj} req
- * @param {obj} res
- * @returns {obj} return object response or error
+ * Posts a new entry to the database
+ *
+ * @param {object} req
+ * @param {object} res
+ *
+ * @returns {object} return object response or error
+ *
  * @memberof Entrycontroller
  */
-  static addOne(req, res) {
+  addOne(req, res) {
     const { title, body } = req.body;
     if (!title || !body) {
       return res.status(400).json({ message: 'Please enter missing fields' });
@@ -34,13 +38,15 @@ export default class Entrycontroller {
   }
 
   /**
- * @static
- * @param {obj} req
- * @param {obj} res
- * @returns {obj} return object response or error
+ * Gets all the entries from the database
+ * @param {object} req
+ * @param {object} res
+ *
+ * @returns {object} return object response or error
+ *
  * @memberof Entrycontroller
  */
-  static getAll(req, res) {
+  getAll(req, res) {
     client.query('SELECT * FROM entries', (err, resp) => {
       if (err) {
         return res.send(err);
@@ -53,13 +59,16 @@ export default class Entrycontroller {
   }
 
   /**
- * @static
- * @param {*} req
- * @param {*} res
- * @returns {obj} return object response or error
+ * Gets the contents of an entry with the id provided
+ *
+ * @param {object} req
+ * @param {object} res
+ *
+ * @returns {object} return object response or error
+ *
  * @memberof Entrycontroller
  */
-  static getOne(req, res) {
+  getOne(req, res) {
     const id = Number(req.params.id);
     client.query(`SELECT * FROM entries WHERE id=${id}`, (err, resp) => {
       if (err) {
@@ -73,13 +82,16 @@ export default class Entrycontroller {
   }
 
   /**
- * @static
- * @param {*} req
- * @param {*} res
- * @returns {obj} return object response or error
+ * Changes the content of an existing entry with the corresponding id
+ *
+ * @param {object} req
+ * @param {object} res
+ *
+ * @returns {object} success object or error object
+ *
  * @memberof Entrycontroller
  */
-  static modifyOne(req, res) {
+  modifyOne(req, res) {
     const id = Number(req.params.id);
     const { title, body } = req.body;
     client.query(`UPDATE entries SET title = $1, body = $2, last_updated = NOW() WHERE id = ${id}`, [title, body], (err, resp) => {
@@ -94,12 +106,16 @@ export default class Entrycontroller {
   }
 
   /**
- * @static
- * @param {*} req
- * @param {*} res
+ * Deletes the entry with corresponding id
+ *
+ * @param {object} req
+ * @param {object} res
+ *
+ * @returns {object} success object or error object
+ *
  * @memberof Entrycontroller
  */
-  static deleteOne(req, res) {
+  deleteOne(req, res) {
     const id = Number(req.params.id);
     client.query(`DELETE FROM entries WHERE id=${id}`, (err, resp) => {
       if (err) {
@@ -114,3 +130,5 @@ export default class Entrycontroller {
     });
   }
 }
+
+export default new Entrycontroller();
