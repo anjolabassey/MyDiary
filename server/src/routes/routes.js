@@ -1,6 +1,6 @@
 import express from 'express';
 import Entrycontroller from '../controllers/entries';
-import users from '../controllers/users';
+import UserController from '../controllers/users';
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/entries/:id', Entrycontroller.getOne);
 router.put('/entries/:id', Entrycontroller.modifyOne);
 router.delete('/entries/:id', Entrycontroller.deleteOne);
 
-router.post('/users', users.addUser);
-router.post('/users', users.getUser);
+router.post('/auth/signup', UserController.signup);
+router.post('/auth/signin', UserController.signin);
 
 export default router;
