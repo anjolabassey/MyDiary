@@ -1,5 +1,8 @@
 node_modules
+
 .coveralls.yml
+.env
+
+
 coverage
 .nyc_output
-.env
