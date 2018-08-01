@@ -27,7 +27,25 @@ const addUser = (req, res) => {
         res.json({
           message: 'User successfully added',
           entry: resp.row
-          
+        });
+      }
+    });
+  }
+};
+
+const getUser = (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    res.status(400).json({ message: 'Please enter missing fields' });
+  } else {
+    client.query(`SELECT * FROM entries WHERE id=${email}`, (err, resp) => {
+      if (err) {
+        res.status(400).json({ error: 'User not added successfully' });
+      } else {
+        res.json({
+          message: 'User successfully added',
+          entry: resp.row
         });
       }
     });
@@ -35,5 +53,6 @@ const addUser = (req, res) => {
 };
 
 export default {
-  addUser
+  addUser,
+  getUser
 };

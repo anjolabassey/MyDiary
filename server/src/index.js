@@ -5,8 +5,6 @@ import logger from 'morgan';
 import routes from './routes/routes';
 import { db } from './models/database';
 
-const bcrypt = require('bcrypt');
-
 require('dotenv').config();
 
 const port = process.env.PORT || 4000;
