@@ -8,7 +8,7 @@ const checkAuth = (req, res, next) => {
         res.status(401).json({
           status: 'Failed',
           message: 'Unauthorized',
-          error: err
+          error: err.message
         });
       } else {
         req.body.decoded = decoded;
