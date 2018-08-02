@@ -51,14 +51,22 @@ class Entrycontroller {
  *
  * @memberof Entrycontroller
  */
-  getAll(req, res) {
-    client.query('SELECT * FROM entries', (err, resp) => {
+  getAllEntries(req, res) {
+    const userId = req.body.decoded.sub;
+    client.query(`SELECT * FROM entries WHERE user_id=${userId}`, (err, resp) => {
       if (err) {
-        return res.send(err);
+        return res.status(404).json({
+          status: 'Failed',
+          message: 'Entry not found'
+        });
       } else if (resp.rowCount === 0) {
-        return res.status(404).json({ message: 'There are no entries yet' });
+        return res.status(404).json({ message: 'You don"t have entries yet' });
       } else {
-        return res.send(resp.rows);
+        console.log(resp.rows);
+        return res.status(200).json({
+          status: 'Success',
+          entry: resp.rows
+        });
       }
     });
   }
