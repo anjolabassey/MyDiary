@@ -3,7 +3,8 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import routes from '../routes/routes';
 import app from '../index';
-import entries from '../controllers/entries';
+import entryController from '../controllers/entries';
+import entryValidation from '../helpers/entryValidation';
 
 const should = chai.should();
 

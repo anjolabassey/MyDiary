@@ -1,4 +1,5 @@
 import { db, client } from '../models/database';
+import entryValidation from '../helpers/entryValidation';
 
 
 /**
@@ -18,28 +19,20 @@ class Entrycontroller {
  */
   addEntry(req, res) {
     const { title, body } = req.body;
-    if (!title || !body) {
-      return res.status(400).json({ message: 'Please enter missing fields' });
-    } else if (title === 'true' || title === 'false') {
-      return res.status(400).json({ message: 'Booleans cannot be entered' });
-    } else if (body === 'true' || body === 'false') {
-      return res.status(400).json({ message: 'Booleans cannot be entered' });
-    } else {
-      client.query('INSERT INTO entries (title, body, last_updated, user_id) VALUES ( $1, $2, NOW(), $3) RETURNING *', [title, body, req.body.decoded.sub], (err, resp) => {
-        if (err) {
-          return res.status(404).json({
-            status: 'Failed',
-            message: 'Entry not found'
-          });
-        } else {
-          return res.status(201).json({
-            status: 'Success',
-            message: 'Entry successfully added',
-            entry: resp.rows[0]
-          });
-        }
-      });
-    }
+    client.query('INSERT INTO entries (title, body, last_updated, user_id) VALUES ( $1, $2, NOW(), $3) RETURNING *', [title, body, req.body.decoded.sub], (err, resp) => {
+      if (err) {
+        return res.status(404).json({
+          status: 'Failed',
+          message: 'Entry not found'
+        });
+      } else {
+        return res.status(201).json({
+          status: 'Success',
+          message: 'Entry successfully added',
+          entry: resp.rows[0]
+        });
+      }
+    });
   }
 
   /**
@@ -70,6 +63,7 @@ class Entrycontroller {
       }
     });
   }
+  
 
   /**
  * Gets the contents of an entry with the id provided
