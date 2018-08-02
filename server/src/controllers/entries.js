@@ -1,5 +1,6 @@
 import { db, client } from '../models/database';
 
+
 /**
  * @export
  * @class Entrycontroller
