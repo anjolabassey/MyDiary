@@ -8,54 +8,38 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _db = require('../db');
+var _entries = require('../controllers/entries');
 
-var _db2 = _interopRequireDefault(_db);
+var _entries2 = _interopRequireDefault(_entries);
+
+var _users = require('../controllers/users');
+
+var _users2 = _interopRequireDefault(_users);
+
+var _auth = require('../helpers/auth');
+
+var _auth2 = _interopRequireDefault(_auth);
+
+var _entryValidation = require('../helpers/entryValidation');
+
+var _entryValidation2 = _interopRequireDefault(_entryValidation);
+
+var _userValidation = require('../helpers/userValidation');
+
+var _userValidation2 = _interopRequireDefault(_userValidation);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
 
-router.post('/', function (req, res) {
-  _db2.default.addOne(req.body);
-  res.json({
-    message: 'Entry added succesfully',
-    error: false
-  });
-});
+router.post('/entries', _auth2.default, _entryValidation2.default, _entries2.default.addEntry);
+router.get('/entries', _auth2.default, _entries2.default.getAllEntries);
+router.get('/entries/:id', _auth2.default, _entries2.default.getOneEntry);
+router.put('/entries/:id', _auth2.default, _entryValidation2.default, _entries2.default.modifyEntry);
+router.delete('/entries/:id', _auth2.default, _entries2.default.deleteEntry);
 
-router.get('/', function (req, res) {
-  _db2.default.getAll();
-  res.json({
-    entry: _db2.default.getAll(),
-    message: 'View all entries',
-    error: false
-  });
-});
-
-router.get('/:id', function (req, res) {
-  res.json({
-    entry: _db2.default.getOne(Number(req.params.id)),
-    message: 'View this entry'
-  });
-});
-
-router.put('/:id', function (req, res) {
-  req.body.id = Number(req.params.id);
-  res.json({
-    entry: _db2.default.modifyOne(req.body),
-    message: 'Entry is successfully edited',
-    error: false
-  });
-});
-
-router.delete('/:id', function (req, res) {
-  _db2.default.deleteOne(Number(req.params.id));
-  res.json({
-    message: 'Entry is successfully deleted',
-    error: false
-  });
-});
+router.post('/auth/signup', _userValidation2.default.signUp, _users2.default.signup);
+router.post('/auth/signin', _userValidation2.default.signIn, _users2.default.signin);
 
 exports.default = router;
 //# sourceMappingURL=routes.js.map
