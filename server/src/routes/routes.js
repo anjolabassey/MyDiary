@@ -6,7 +6,7 @@ import checkAuth from '../helpers/auth';
 const router = express.Router();
 
 router.post('/entries', checkAuth, entryController.addEntry);
-router.get('/entries', checkAuth, entryController.getAll);
+router.get('/entries', checkAuth, entryController.getAllEntries);
 router.get('/entries/:id', checkAuth, entryController.getOne);
 router.put('/entries/:id', checkAuth, entryController.modifyOne);
 router.delete('/entries/:id', checkAuth, entryController.deleteOne);
