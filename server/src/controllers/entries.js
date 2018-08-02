@@ -27,7 +27,7 @@ class Entrycontroller {
       if (err) {
         return res.status(400).json({
           status: 'Failed',
-          message: 'Entry not found'
+          message: 'Entry was not posted'
         });
       } else {
         return res.status(201).json({

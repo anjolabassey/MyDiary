@@ -18,13 +18,15 @@ import { db, client } from '../models/database';
 
 deleteEntryTable();
 deleteUserTable();
-createEntryTable();
 createUserTable();
+createEntryTable();
+
 
 let should = chai.should();
 chai.use(chaiHttp);
 
 let token;
+let userId;
 
 const newUser = {
   email: 'oyinye@yahoo.com',
@@ -128,8 +130,6 @@ describe('mydiary API endpoint', () => {
           res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.should.have.property('status');
-          res.body.should.have.property('entry');
-          
           done();
         });
     });
@@ -166,8 +166,8 @@ describe('mydiary API endpoint', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
-          res.body.should.have.property('title');
-          res.body.should.have.property('body');
+          res.body.should.have.property('status');
+          res.body.should.have.property('entry');
           done();
         });
     });
