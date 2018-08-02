@@ -16,7 +16,7 @@ class Entrycontroller {
  *
  * @memberof Entrycontroller
  */
-  addOne(req, res) {
+  addEntry(req, res) {
     const { title, body } = req.body;
     if (!title || !body) {
       return res.status(400).json({ message: 'Please enter missing fields' });
@@ -25,13 +25,17 @@ class Entrycontroller {
     } else if (body === 'true' || body === 'false') {
       return res.status(400).json({ message: 'Booleans cannot be entered' });
     } else {
-      client.query('INSERT INTO entries (title, body, last_updated) VALUES ( $1, $2, NOW()) RETURNING *', [title, body], (err, resp) => {
+      client.query('INSERT INTO entries (title, body, last_updated, user_id) VALUES ( $1, $2, NOW(), $3) RETURNING *', [title, body, req.body.decoded.sub], (err, resp) => {
         if (err) {
-          return res.status(400).send(err);
+          return res.status(404).json({
+            status: 'Failed',
+            message: 'Entry not found'
+          });
         } else {
-          return res.json({
+          return res.status(201).json({
+            status: 'Success',
             message: 'Entry successfully added',
-            entry: resp.row
+            entry: resp.rows[0]
           });
         }
       });
