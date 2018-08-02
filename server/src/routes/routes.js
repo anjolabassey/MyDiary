@@ -10,8 +10,8 @@ const router = express.Router();
 router.post('/entries', checkAuth, entryValidation, entryController.addEntry);
 router.get('/entries', checkAuth, entryController.getAllEntries);
 router.get('/entries/:id', checkAuth, entryController.getOneEntry);
-router.put('/entries/:id', checkAuth, entryController.modifyOneEntry);
-router.delete('/entries/:id', checkAuth, entryController.deleteOneEntry);
+router.put('/entries/:id', checkAuth, entryValidation, entryController.modifyEntry);
+router.delete('/entries/:id', checkAuth, entryController.deleteEntry);
 
 router.post('/auth/signup', userValidation.signUp, userController.signup);
 router.post('/auth/signin', userValidation.signIn, userController.signin);
