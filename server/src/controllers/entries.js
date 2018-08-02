@@ -65,7 +65,7 @@ class Entrycontroller {
         console.log(resp.rows);
         return res.status(200).json({
           status: 'Success',
-          entry: resp.rows
+          entries: resp.rows
         });
       }
     });
@@ -86,11 +86,20 @@ class Entrycontroller {
     const userId = req.body.decoded.sub;
     client.query(`SELECT * FROM entries WHERE id=${id} AND user_id=${userId}`, (err, resp) => {
       if (err) {
-        return res.status(404).json({ message: 'Entry not found' });
+        return res.status(404).json({
+          status: 'Failed',
+          message: 'Entry not found'
+        });
       } else if (resp.rowCount === 0) {
-        return res.status(400).json({ message: 'Entry does not exist' });
+        return res.status(400).json({
+          status: 'Failed',
+          message: 'Entry does not exist'
+        });
       } else {
-        return res.send(resp.rows);
+        return res.status(200).json({
+          status: 'Success',
+          entry: resp.rows
+        });
       }
     });
   }
@@ -105,16 +114,27 @@ class Entrycontroller {
  *
  * @memberof Entrycontroller
  */
-  modifyOne(req, res) {
+  modifyOneEntry(req, res) {
     const id = Number(req.params.id);
     const { title, body } = req.body;
-    client.query(`UPDATE entries SET title = $1, body = $2, last_updated = NOW() WHERE id = ${id}`, [title, body], (err, resp) => {
+    const userId = req.body.decoded.sub;
+    client.query(`UPDATE entries SET title = $1, body = $2, last_updated = NOW() WHERE id = ${id} AND user_id=${userId} RETURNING *`, [title, body], (err, resp) => {
       if (err) {
-        return res.status(400).json({ message: 'Entry does not exist' });
+        return res.status(400).json({
+          status: 'Failed',
+          message: 'Entry does not exist'
+        });
       } else if (resp.rowCount === 0) {
-        return res.status(404).json({ message: 'Entry not found' });
+        return res.status(404).json({
+          status: 'Failed',
+          message: 'Entry not found'
+        });
       } else {
-        return res.status(200).json({ message: 'Entry successfully updated' });
+        return res.status(200).json({
+          status: 'Success',
+          message: 'Entry successfully updated',
+          entry: resp.rows[0]
+        });
       }
     });
   }
@@ -129,15 +149,23 @@ class Entrycontroller {
  *
  * @memberof Entrycontroller
  */
-  deleteOne(req, res) {
+  deleteOneEntry(req, res) {
     const id = Number(req.params.id);
-    client.query(`DELETE FROM entries WHERE id=${id}`, (err, resp) => {
+    const userId = req.body.decoded.sub;
+    client.query(`DELETE FROM entries WHERE id=${id} AND user_id = ${userId}`, (err, resp) => {
       if (err) {
-        return res.status(400).send(err);
+        return res.status(400).json({
+          status: 'Failed',
+          message: 'Entry does not exist'
+        });
       } else if (resp.rowCount === 0) {
-        return res.status(404).json({ message: 'Entry not found' });
+        return res.status(404).json({
+          status: 'Failed',
+          message: 'Entry not found'
+        });
       } else {
         return res.json({
+          status: 'Success',
           message: 'Entry successfully deleted'
         });
       }
