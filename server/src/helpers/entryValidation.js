@@ -21,16 +21,6 @@ const entryValidation = (req, res, next) => {
       status: 'Failed',
       message: 'Empty spaces are not valid, please enter Entry body'
     });
-  } else if (title === 'true' || title === 'false') {
-    return res.status(400).json({
-      status: 'Failed',
-      message: 'Booleans cannot be entered as entry title'
-    });
-  } else if (body === 'true' || body === 'false') {
-    return res.status(400).json({
-      status: 'Failed',
-      message: 'Booleans cannot be entered'
-    });
   } else {
     next();
   }

@@ -2,9 +2,9 @@ import { db, client } from '../models/database';
 import { createEntryTable, createUserTable } from '../models/schema';
 import entryValidation from '../helpers/entryValidation';
 
-
-createEntryTable();
 createUserTable();
+createEntryTable();
+
 
 /**
  * @export
@@ -54,7 +54,7 @@ class Entrycontroller {
       if (err) {
         return res.status(404).json({
           status: 'Failed',
-          message: 'Entry not found'
+          message: err
         });
       } else if (resp.rowCount === 0) {
         return res.status(404).json({ message: 'You have don\'t have any entries yet' });
@@ -111,7 +111,7 @@ class Entrycontroller {
  *
  * @memberof Entrycontroller
  */
-  modifyOneEntry(req, res) {
+  modifyEntry(req, res) {
     const id = Number(req.params.id);
     const { title, body } = req.body;
     const userId = req.body.decoded.sub;
@@ -146,7 +146,7 @@ class Entrycontroller {
  *
  * @memberof Entrycontroller
  */
-  deleteOneEntry(req, res) {
+  deleteEntry(req, res) {
     const id = Number(req.params.id);
     const userId = req.body.decoded.sub;
     client.query(`DELETE FROM entries WHERE id=${id} AND user_id = ${userId}`, (err, resp) => {

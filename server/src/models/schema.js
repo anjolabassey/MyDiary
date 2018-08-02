@@ -1,7 +1,7 @@
 import { db, client } from './database';
 
 const createEntryTable = () => {
-  client.query('CREATE TABLE IF NOT EXISTS entries (id SERIAL PRIMARY KEY, title CHARACTER VARYING(50) NOT NULL, body CHARACTER VARYING(1000) NOT NULL, created_at TIMESTAMP NOT NULL DEFAULT(NOW()), last_updated TIMESTAMP NOT NULL DEFAULT(NOW()))', (err, res) => {
+  client.query('CREATE TABLE IF NOT EXISTS entries (id SERIAL PRIMARY KEY, title CHARACTER VARYING(50) NOT NULL, body CHARACTER VARYING(1000) NOT NULL, created_at TIMESTAMP NOT NULL DEFAULT(NOW()), last_updated TIMESTAMP NOT NULL DEFAULT(NOW()), user_id INT REFERENCES users)', (err, res) => {
     if (err) {
       console.log(err);
     } else {
