@@ -3,6 +3,15 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { db, client } from '../models/database';
 
+const newToken = (user) => {
+  return jwt.sign({
+    iss: 'MyDiary',
+    sub: user.rows[0].user_id,
+    iat: new Date().getTime(),
+    exp: Math.floor(Date.now() / 1000 + (60 * 60))
+  }, process.env.SECRET_KEY);
+};
+
 /**
  *
  * @class Usercontroller
@@ -34,18 +43,10 @@ class Usercontroller {
     } else {
       const hashed = bcrypt.hashSync(password, 10);
       client.query('INSERT INTO users (email, username, password) VALUES ( $1, $2, $3) RETURNING *', [email, username, hashed], (err, resp) => {
-        
         if (err) {
           return res.status(409).json({ message: 'This email address already exists' });
         } else {
-          const newToken = jwt.sign({
-            iss: 'Anjola',
-            sub: resp.rows[0].user_id,
-            iat: new Date().getTime(),
-            exp: 10800
-          }, process.env.SECRET_KEY);
           return res.status(201).json({
-            token: newToken,
             status: 'Success',
             user: resp.rows[0].email
           });
@@ -66,7 +67,6 @@ class Usercontroller {
  */
   signin(req, res) {
     const { email, password } = req.body;
-
     if (!email || !password) {
       return res.status(400).json({ message: 'Please enter missing fields' });
     } else {
@@ -77,7 +77,11 @@ class Usercontroller {
           return res.status(400).json({ message: 'This email address does not have an account' });
         } else {
           if (bcrypt.compareSync(password, resp.rows[0].password)) {
-            return res.json({ message: `${resp.rows[0].email} is signed in` });
+            return res.json({
+              status: 'Success',
+              message: `${resp.rows[0].email} is signed in`,
+              token: newToken(resp)
+            });
           } else {
             return res.status(400).json({ messsage: 'Incorrect password' });
           }

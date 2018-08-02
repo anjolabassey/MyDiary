@@ -1,14 +1,15 @@
 import express from 'express';
 import entryController from '../controllers/entries';
 import userController from '../controllers/users';
+import checkAuth from '../helpers/auth';
 
 const router = express.Router();
 
-router.post('/entries', entryController.addOne);
-router.get('/entries', entryController.getAll);
-router.get('/entries/:id', entryController.getOne);
-router.put('/entries/:id', entryController.modifyOne);
-router.delete('/entries/:id', entryController.deleteOne);
+router.post('/entries', checkAuth, entryController.addOne);
+router.get('/entries', checkAuth, entryController.getAll);
+router.get('/entries/:id', checkAuth, entryController.getOne);
+router.put('/entries/:id', checkAuth, entryController.modifyOne);
+router.delete('/entries/:id', checkAuth, entryController.deleteOne);
 
 router.post('/auth/signup', userController.signup);
 router.post('/auth/signin', userController.signin);
