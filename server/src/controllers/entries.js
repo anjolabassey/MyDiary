@@ -81,9 +81,10 @@ class Entrycontroller {
  *
  * @memberof Entrycontroller
  */
-  getOne(req, res) {
+  getOneEntry(req, res) {
     const id = Number(req.params.id);
-    client.query(`SELECT * FROM entries WHERE id=${id}`, (err, resp) => {
+    const userId = req.body.decoded.sub;
+    client.query(`SELECT * FROM entries WHERE id=${id} AND user_id=${userId}`, (err, resp) => {
       if (err) {
         return res.status(404).json({ message: 'Entry not found' });
       } else if (resp.rowCount === 0) {
