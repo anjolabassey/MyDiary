@@ -7,6 +7,7 @@ let closeSignup = document.getElementById("close2");
 let submitLogin = document.getElementById("submitlogin");
 let submitSignup = document.getElementById("submitsignup");
 
+
 //show log in when login button is clicked
 viewLogin.addEventListener("click", event => {
     event.preventDefault();
@@ -34,8 +35,6 @@ window.onclick = event => {
 //close log in modal when user clicks close button
 closeLogin.addEventListener("click", event => {
     loginModal.style.display = "none";
-    
-
 });
 
 //close sign up modal when user clicks close button 
@@ -47,12 +46,27 @@ closeSignup.addEventListener("click", event => {
 submitLogin.addEventListener("click", event => {
     event.preventDefault();
     location.assign("dashboard.html")
-
 });
 
 //directs user to dashboard after clicking submit
 submitSignup.addEventListener("click", event => {
     event.preventDefault();
     location.assign("dashboard.html")
+
+});
+
+//directs user to sign up modal after clicking submit
+linkSignup.addEventListener("click", event => {
+    event.preventDefault();
+    loginModal.style.display = "none";
+    signupModal.style.display = "block";
+});
+
+//directs user to sign in modal after clicking submit
+linkSignin.addEventListener("click", event => {
+    event.preventDefault();
+    signupModal.style.display = "none";
+    loginModal.style.display = "block";
+
 
 });

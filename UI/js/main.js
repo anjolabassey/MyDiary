@@ -5,6 +5,7 @@ let dropdown = document.getElementById("dropdown");
 let menu = document.getElementById("menu");
 
 
+
 //close edit modal when user clicks outside of it 
 window.onclick = event => {
     if (event.target === addModal) {
