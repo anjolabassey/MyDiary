@@ -30,9 +30,9 @@ class Usercontroller {
     const hashed = bcrypt.hashSync(password, 10);
     client.query('INSERT INTO users (email, username, password) VALUES ( $1, $2, $3) RETURNING *', [email, username, hashed], (err, resp) => {
       if (err) {
-        return res.status(409).json({ 
+        return res.status(409).json({
           status: 'Failed',
-          message: 'This email address already exists' 
+          message: 'This email address already exists'
         });
       } else {
         return res.status(201).json({
@@ -63,13 +63,13 @@ class Usercontroller {
           message: 'Wrong email or password, please try again' 
         });
       } else if (resp.rowCount === 0) {
-        return res.status(400).json({
+        return res.status(404).json({
           status: 'Failed',
-          message: 'This email address does not have an account' 
+          message: 'This email address does not have an account'
         });
       } else {
         if (bcrypt.compareSync(password, resp.rows[0].password)) {
-          return res.json({
+          return res.status(200).json({
             status: 'Success',
             message: `${resp.rows[0].email} is signed in`,
             token: newToken(resp)

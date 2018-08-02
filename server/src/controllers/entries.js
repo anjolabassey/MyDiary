@@ -1,6 +1,10 @@
 import { db, client } from '../models/database';
+import { createEntryTable, createUserTable } from '../models/schema';
 import entryValidation from '../helpers/entryValidation';
 
+
+createEntryTable();
+createUserTable();
 
 /**
  * @export
@@ -21,7 +25,7 @@ class Entrycontroller {
     const { title, body } = req.body;
     client.query('INSERT INTO entries (title, body, last_updated, user_id) VALUES ( $1, $2, NOW(), $3) RETURNING *', [title, body, req.body.decoded.sub], (err, resp) => {
       if (err) {
-        return res.status(404).json({
+        return res.status(400).json({
           status: 'Failed',
           message: 'Entry not found'
         });
@@ -53,9 +57,8 @@ class Entrycontroller {
           message: 'Entry not found'
         });
       } else if (resp.rowCount === 0) {
-        return res.status(404).json({ message: 'You don"t have entries yet' });
+        return res.status(404).json({ message: 'You have don\'t have any entries yet' });
       } else {
-        console.log(resp.rows);
         return res.status(200).json({
           status: 'Success',
           entries: resp.rows
