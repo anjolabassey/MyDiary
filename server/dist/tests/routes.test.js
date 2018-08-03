@@ -38,13 +38,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _schema.deleteEntryTable)();
 (0, _schema.deleteUserTable)();
-(0, _schema.createEntryTable)();
 (0, _schema.createUserTable)();
+(0, _schema.createEntryTable)();
 
 var should = _chai2.default.should();
 _chai2.default.use(_chaiHttp2.default);
 
 var token = void 0;
+var userId = void 0;
 
 var newUser = {
   email: 'oyinye@yahoo.com',
@@ -123,8 +124,6 @@ describe('mydiary API endpoint', function () {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('status');
-        res.body.should.have.property('entry');
-
         done();
       });
     });
@@ -152,8 +151,8 @@ describe('mydiary API endpoint', function () {
       _chai2.default.request('http://localhost:4000/api/v1').put('/entries/' + entry.id).set('x-access-token', token).send(entry1).end(function (err, res) {
         res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.should.have.property('title');
-        res.body.should.have.property('body');
+        res.body.should.have.property('status');
+        res.body.should.have.property('entry');
         done();
       });
     });

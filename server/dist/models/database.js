@@ -14,9 +14,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // process.env.DATABASE_URL ||
 require('dotenv').config();
 
-// const connectionString = process.env.CONSTRING;
+var connectionString = process.env.DATABASE_URL;
 
-var client = new _pg2.default.Client(process.env.CONSTRING);
+var client = new _pg2.default.Client(connectionString);
 
 var db = function db() {
   client.connect(function (err) {
