@@ -1,8 +1,4 @@
-TravisCI [![Build Status](https://travis-ci.org/anjolabassey/MyDiary.svg?branch=development)](https://travis-ci.org/anjolabassey/MyDiary)
-
-Coveralls [![Coverage Status](https://coveralls.io/repos/github/anjolabassey/MyDiary/badge.svg?branch=server)](https://coveralls.io/github/anjolabassey/MyDiary?branch=development)
-
-CodeClimate [![Test Coverage](https://api.codeclimate.com/v1/badges/7100dc47534afb253620/test_coverage)](https://codeclimate.com/github/anjolabassey/MyDiary/test_coverage)
+ [![Build Status](https://travis-ci.org/anjolabassey/MyDiary.svg?branch=development)](https://travis-ci.org/anjolabassey/MyDiary)  [![Coverage Status](https://coveralls.io/repos/github/anjolabassey/MyDiary/badge.svg?branch=development)](https://coveralls.io/github/anjolabassey/MyDiary?branch=development) CodeClimate [![Test Coverage](https://api.codeclimate.com/v1/badges/7100dc47534afb253620/test_coverage)](https://codeclimate.com/github/anjolabassey/MyDiary/test_coverage)
 
 # myDiary
 
