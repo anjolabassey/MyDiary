@@ -3,9 +3,9 @@ import pg from 'pg';
 // process.env.DATABASE_URL ||
 require('dotenv').config();
 
-// const connectionString = process.env.CONSTRING;
+const connectionString = process.env.CONSTRING || process.env.DATABASE_URL;
 
-const client = new pg.Client(process.env.CONSTRING);
+const client = new pg.Client(connectionString);
 
 const db = () => {
   client.connect((err) => {
