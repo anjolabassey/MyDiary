@@ -3,7 +3,7 @@ import pg from 'pg';
 // process.env.DATABASE_URL ||
 require('dotenv').config();
 
-const connectionString = process.env.CONSTRING || process.env.DATABASE_URL;
+const connectionString = process.env.DATABASE_URL;
 
 const client = new pg.Client(connectionString);
 
