@@ -6,8 +6,8 @@ let closeLogin = document.getElementById("close1");
 let closeSignup = document.getElementById("close2");
 let submitLogin = document.getElementById("submitlogin");
 let submitSignup = document.getElementById("submitsignup");
-let linkSignin = document.getElementById("linksignup");
-let linkSignup = document.getElementById("linksignin");
+let linkSignin = document.getElementById("linksignin");
+let linkSignup = document.getElementById("linksignup");
 
 
 //show log in when login button is clicked
